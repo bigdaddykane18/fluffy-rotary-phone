@@ -1,0 +1,200 @@
+[
+  {
+    "url": "chrome-search://local-ntp/edge-error-reporting.js",
+    "ranges": [
+      {
+        "start": 0,
+        "end": 163
+      },
+      {
+        "start": 909,
+        "end": 915
+      },
+      {
+        "start": 996,
+        "end": 1055
+      }
+    ],
+    "text": "var r={d:(e,t)=>{for(var o in t)r.o(t,o)&&!r.o(e,o)&&Object.defineProperty(e,o,{enumerable:!0,get:t[o]})},o:(r,e)=>Object.prototype.hasOwnProperty.call(r,e)},e={};function t(r){!function(r){window.onerror=(e,t,o,n,c)=>{const a={column:n,component:r,line:o,message:c?.message,name:c?.name,source_url:t,stack:c?.stack};chrome.errorReporting.reportError(a)}}(r),function(){const r=Error;function e(e,t){if(t.length>0){if(\"getScriptHash\"in t[0].constructor.prototype)return r.prepareStackTrace=c,c.apply(r,[e,t]);r.prepareStackTrace=n}return\"function\"==typeof n?n.apply(r,[e,t]):e.stack}r.prepareStackTrace!==e&&r.prepareStackTrace!==c&&(n=r.prepareStackTrace,r.prepareStackTrace=e)}()}function o(r){const e=new Map;for(const t of r){const r=t.getFileName(),o=t.getScriptHash?.();r&&o&&e.set(r,o)}if(e.size){const r=[\"\",\"Source modules:\"];for(const[t,o]of e.entries())r.push(`    ${t} ${o}`);return r.join(\"\\n\")}}let n;function c(r,e){let t;return t=n?n.apply(Error,[r,e]):r.stack,o(e)?t+\"\\n\"+o(e):t}r.d(e,{y:()=>t});var a=e.y;export{a as hookErrorReporting};"
+  },
+  {
+    "url": "chrome-search://local-ntp/index.js",
+    "ranges": [
+      {
+        "start": 0,
+        "end": 68
+      },
+      {
+        "start": 324,
+        "end": 357
+      },
+      {
+        "start": 795,
+        "end": 1220
+      },
+      {
+        "start": 1252,
+        "end": 1290
+      },
+      {
+        "start": 1316,
+        "end": 1356
+      },
+      {
+        "start": 1384,
+        "end": 1441
+      },
+      {
+        "start": 1466,
+        "end": 1469
+      },
+      {
+        "start": 2107,
+        "end": 2191
+      },
+      {
+        "start": 2208,
+        "end": 2299
+      },
+      {
+        "start": 2341,
+        "end": 2346
+      },
+      {
+        "start": 2715,
+        "end": 2828
+      },
+      {
+        "start": 2896,
+        "end": 2901
+      },
+      {
+        "start": 2986,
+        "end": 3044
+      },
+      {
+        "start": 3206,
+        "end": 3218
+      },
+      {
+        "start": 3369,
+        "end": 3376
+      },
+      {
+        "start": 3581,
+        "end": 3613
+      },
+      {
+        "start": 3637,
+        "end": 3743
+      },
+      {
+        "start": 3747,
+        "end": 3870
+      },
+      {
+        "start": 3938,
+        "end": 3950
+      },
+      {
+        "start": 3977,
+        "end": 4099
+      },
+      {
+        "start": 4141,
+        "end": 4144
+      },
+      {
+        "start": 4189,
+        "end": 4260
+      },
+      {
+        "start": 4356,
+        "end": 4363
+      },
+      {
+        "start": 4816,
+        "end": 4868
+      },
+      {
+        "start": 4881,
+        "end": 4937
+      },
+      {
+        "start": 5033,
+        "end": 5088
+      },
+      {
+        "start": 5189,
+        "end": 5234
+      }
+    ],
+    "text": "import*as e from\"./edge-error-reporting.js\";var t,n,i,r,o={256:()=>{function e(e,t){\"hidden\"===document.visibilityState?window.addEventListener(\"visibilitychange\",(()=>{chrome.embeddedSearch.newTabPage.logEventWithTimestamp(e,performance.now(),!0)}),{once:!0}):chrome.embeddedSearch.newTabPage.logEventWithTimestamp(e,t,!1)}const t=new PerformanceObserver((t=>{for(const n of t.getEntries())\"quicklinks-paint\"===n.name?(e(11,n.startTime),performance.measure(\"most-visited-ttvr\",\"navigationStart\",n.name)):\"shell-interactive\"===n.name?(e(62,n.startTime),e(63,n.startTime),performance.measure(\"shell-interactive\",\"navigationStart\",n.name)):\"image-paint\"==n.name&&\"wallpaper\"==n.identifier&&(e(60,n.startTime),performance.measure(\"background-image-ttvr\",{start:\"navigationStart\",end:n.startTime}))}));t.observe({type:\"mark\",buffered:!0}),t.observe({type:\"element\",buffered:!0})},593:()=>{class e extends HTMLElement{constructor(){super(),this.ttvrLogged=!1,this.newTabPageApi=chrome.embeddedSearch.newTabPage,this.searchBoxApi=chrome.embeddedSearch.searchBox,this.fakebox=this.querySelector(\"#fakebox\"),this.makeInteractive(),performance.mark(\"shell-interactive\")}makeInteractive(){document.addEventListener(\"pointerdown\",(e=>this.onDocumentPointerDown(e))),document.addEventListener(\"paste\",(e=>this.onDocumentPaste(e))),document.addEventListener(\"keydown\",(e=>this.onDocumentKeyDown(e))),chrome.ntpSettingsPrivate.onPrefsChanged.addListener((e=>this.onPrefsChanged(e)))}onDocumentPointerDown(e){this.searchBoxApi.isKeyCaptureEnabled&&this.searchBoxApi.stopCapturingKeyStrokes()}onDocumentPaste(e){e.preventDefault();const t=e.clipboardData?.getData(\"text/plain\");this.searchBoxApi.startCapturingKeyStrokes(t)}onDocumentKeyDown(e){(e.ctrlKey||e.metaKey)&&\"v\"===e.key.toLowerCase()||e.ctrlKey||e.metaKey||e.altKey||1!==e.key.length||\"\"===e.key.trim()||(e.preventDefault(),this.searchBoxApi.isKeyCaptureEnabled||this.searchBoxApi.startCapturingKeyStrokes(e.key))}onPrefsChanged(e){const t=e.find((e=>\"ntp.layout_mode\"===e.key));t&&document.body.setAttribute(\"data-layout\",0===t.value?\"focused\":\"inspirational\")}}customElements.define(\"ntp-shell\",e)}},a={};function s(e){var t=a[e];if(void 0!==t)return t.exports;var n=a[e]={exports:{}};return o[e](n,n.exports,s),n.exports}s.m=o,n=Object.getPrototypeOf?e=>Object.getPrototypeOf(e):e=>e.__proto__,s.t=function(e,i){if(1&i&&(e=this(e)),8&i)return e;if(\"object\"==typeof e&&e){if(4&i&&e.__esModule)return e;if(16&i&&\"function\"==typeof e.then)return e}var r=Object.create(null);s.r(r);var o={};t=t||[null,n({}),n([]),n(n)];for(var a=2&i&&e;\"object\"==typeof a&&!~t.indexOf(a);a=n(a))Object.getOwnPropertyNames(a).forEach((t=>o[t]=()=>e[t]));return o.default=()=>e,s.d(r,o),r},s.d=(e,t)=>{for(var n in t)s.o(t,n)&&!s.o(e,n)&&Object.defineProperty(e,n,{enumerable:!0,get:t[n]})},s.f={},s.e=e=>Promise.all(Object.keys(s.f).reduce(((t,n)=>(s.f[n](e,t),t)),[])),s.u=e=>({291:\"quicklinks-partial\",852:\"settings-partial\",913:\"rewards-partial\"}[e]+\".js\"),s.o=(e,t)=>Object.prototype.hasOwnProperty.call(e,t),s.r=e=>{\"undefined\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\"Module\"}),Object.defineProperty(e,\"__esModule\",{value:!0})},i={57:0},r=e=>{var t,n,{ids:r,modules:o,runtime:a}=e,d=0;for(t in o)s.o(o,t)&&(s.m[t]=o[t]);for(a&&a(s);d<r.length;d++)n=r[d],s.o(i,n)&&i[n]&&i[n][0](),i[r[d]]=0},s.f.j=(e,t)=>{var n=s.o(i,e)?i[e]:void 0;if(0!==n)if(n)t.push(n[1]);else{var o=import(\"./\"+s.u(e)).then(r,(t=>{throw 0!==i[e]&&(i[e]=void 0),t}));o=Promise.race([o,new Promise((t=>n=i[e]=[t]))]),t.push(n[1]=o)}};const d=(c={hookErrorReporting:()=>e.hookErrorReporting},p={},s.d(p,c),p);var c,p;s(256),s(593);const l=window.trustedTypes.createPolicy(\"fast-html\",{createHTML:e=>e});function m(e){return new Promise(((t,n)=>{const i=new XMLHttpRequest;i.onreadystatechange=function(){4===this.readyState&&(200===this.status?t(l.createHTML(i.responseText)):n(this.status))},i.onerror=function(){n(i.statusText)},i.open(\"GET\",e,!0),i.send()}))}class h extends HTMLElement{constructor(e=m){super(),e(\"./quicklinks-partial.html\").then((e=>{this.innerHTML=e,this.importPartial()}))}importPartial(){s.e(291).then(s.bind(s,494))}}customElements.define(\"ntp-quicklinks\",h);class u extends HTMLElement{constructor(){super(),this.initialized=!1,this.addEventListener(\"toggle\",(e=>this.onToggle(e)))}static get observedAttributes(){return[\"popover-endpoint\"]}onToggle(e){\"open\"===e.newState?this.load().then((()=>{this.onVisible(),this.initialized?this.dispatchEvent(new CustomEvent(\"shown\")):this.initialized=!0})):this.dispatchEvent(new CustomEvent(\"hidden\"))}async load(){if(!this.initialized&&this.popoverEndpoint)return m(this.popoverEndpoint).then((e=>{this.innerHTML=e}))}attributeChangedCallback(e,t,n){\"popover-endpoint\"===e&&(this.popoverEndpoint=n)}}customElements.define(\"ntp-waffle\",class extends u{onVisible(){}}),customElements.define(\"ntp-settings\",class extends u{onVisible(){this.initialized||this.importPartial()}importPartial(){s.e(852).then(s.bind(s,323))}}),customElements.define(\"ntp-rewards\",class extends u{onVisible(){this.initialized||this.importPartial()}importPartial(){s.e(913).then(s.t.bind(s,932,23))}}),(0,d.hookErrorReporting)(\"webui-new-tab\");"
+  },
+  {
+    "url": "chrome-search://local-ntp/local-ntp.html",
+    "ranges": [
+      {
+        "start": 261,
+        "end": 1415
+      },
+      {
+        "start": 2270,
+        "end": 2303
+      },
+      {
+        "start": 2309,
+        "end": 2361
+      },
+      {
+        "start": 2367,
+        "end": 2868
+      },
+      {
+        "start": 2874,
+        "end": 3339
+      },
+      {
+        "start": 3345,
+        "end": 3648
+      },
+      {
+        "start": 3654,
+        "end": 4730
+      },
+      {
+        "start": 4736,
+        "end": 4945
+      },
+      {
+        "start": 4951,
+        "end": 5083
+      },
+      {
+        "start": 5089,
+        "end": 6421
+      },
+      {
+        "start": 6427,
+        "end": 6512
+      },
+      {
+        "start": 6518,
+        "end": 7317
+      },
+      {
+        "start": 7833,
+        "end": 7853
+      },
+      {
+        "start": 7861,
+        "end": 7901
+      },
+      {
+        "start": 7909,
+        "end": 7955
+      }
+    ],
+    "text": "<!doctype html><html dir=\"ltr\" lang=\"de\"><head><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1,shrink-to-fit=no\"><meta name=\"referrer\" content=\"strict-origin\"><link rel=\"icon\" href=\"data:,\"><title>Neuer Tab</title><style>:root {\n      --header-height: 50px;\n      --fill-color: #f7f7f7;\n      --fill-popup-color: #ffffff;\n      --neutral-layer-floating: #ffffff;\n      --logo-color: rgb(115, 115, 115);\n      --neutral-foreground-rest: #262626;\n      --neutral-fill-rest: rgba(0, 0, 0, 3.92%);\n      --placeholder-color: rgb(115, 115, 115);\n      --font-family: Segoe UI, Segoe UI Midlevel, Segoe WP, Arial, sans-serif;\n      --accent-foreground-rest: #0072c9;\n\n      --borderRadiusMedium: 4px;\n      --colorNeutralStroke1Hover: #c7c7c7;\n      --shadow2: 0 0 2px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.14);\n      --shadow4: 0 0 2px rgba(0, 0, 0, 0.12), 0 2px 4px rgba(0, 0, 0, 0.14);\n      --lineHeightBase300: 20px;\n      --fontSizeBase300: 14px;\n      --spacingVerticalXS: 4px;\n      --spacingVerticalSNudge: 6px;\n      --spacingHorizontalS: 8px;\n      --spacingVerticalMNudge: 10px;\n      --colorNeutralForeground1: #242424;\n      --colorNeutralForeground1Pressed: #242424;\n      --colorNeutralForeground1Hover: #242424;\n      --colorNeutralBackground1: #ffffff;\n      --colorNeutralBackground1Pressed: #e0e0e0;\n      --colorNeutralBackground1Hover: #f5f5f5;\n    }\n\n    @media (prefers-color-scheme: dark) {\n      :root {\n        --fill-color: #242424;\n        --fill-popup-color: #000000;\n        --neutral-layer-floating: #4a4a4a;\n        --neutral-foreground-rest: #f5f5f5;\n        --neutral-fill-rest: rgba(255, 255, 255, 6.05%);\n        --accent-foreground-rest: #3091dc;\n        --logo-color: #f5f5f5;\n\n        --colorNeutralStroke1Hover: #757575;\n        --shadow2: 0 0 2px rgba(0, 0, 0, 0.24), 0 1px 2px rgba(0, 0, 0, 0.28);\n        --shadow4: 0 0 2px rgba(0, 0, 0, 0.24), 0 2px 4px rgba(0, 0, 0, 0.28);\n        --colorNeutralForeground1: #ffffff;\n        --colorNeutralForeground1Pressed: #ffffff;\n        --colorNeutralForeground1Hover: #ffffff;\n        --colorNeutralBackground1: #292929;\n        --colorNeutralBackground1Pressed: #1f1f1f;\n        --colorNeutralBackground1Hover: #3d3d3d;\n      }\n    }\n\n    html {\n      height: 100vh;\n    }\n\n    body {\n      margin: 0;\n      height: inherit;\n    }\n\n    ntp-shell {\n      --inspirational-neutral-foreground-rest: var(--neutral-foreground-rest);\n      height: inherit;\n      margin: 0;\n      padding: 0;\n      min-width: 343px;\n      position: relative;\n      display: block;\n      font-family: var(--font-family);\n      -webkit-font-smoothing: antialiased;\n      align-items: center;\n      background-color: var(--fill-color);\n      background-position: center;\n      background-size: cover;\n      background-repeat: no-repeat;\n      overflow: auto;\n    }\n\n    button {\n      border: none;\n      background: none;\n      box-shadow: none;\n      outline: none;\n      cursor: pointer;\n      border-radius: 4px;\n      display: flex;\n      justify-content: center;\n      align-items: center;\n      padding: 0;\n      margin: 0;\n      border: 1px solid transparent;\n\n      &:hover {\n        background-color: var(--neutral-fill-rest);\n      }\n\n      &:focus-visible {\n        outline: -webkit-focus-ring-color auto 1px;\n      }\n    }\n\n    #background-overlay {\n      width: 100%;\n      height: 100%;\n      display: none;\n      opacity: 1;\n      transition: opacity 0.5s ease-in-out 0s;\n      background-image: radial-gradient(rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.5) 100%), radial-gradient(rgba(0, 0, 0, 0) 33%, rgba(0, 0, 0, 0.3) 166%);\n    }\n\n    #header {\n      height: var(--header-height);\n      display: flex;\n      align-items: center;\n      padding: 0px 26px 0 22px;\n      box-sizing: border-box;\n      position: absolute;\n      inset-inline-start: 0;\n      inset-inline-end: 0;\n      z-index: 1;\n      fill: var(--inspirational-neutral-foreground-rest);\n\n      >div {\n        flex: 1;\n        display: flex;\n        position: relative;\n      }\n\n      #header-right {\n        justify-content: flex-end;\n      }\n\n      .header-button {\n        width: 40px;\n        height: 40px;\n      }\n\n      #waffle {\n        anchor-name: --anchor-waffle;\n      }\n\n      #rewards {\n        anchor-name: --anchor-rewards;\n      }\n\n      #settings {\n        anchor-name: --anchor-settings;\n      }\n\n      ntp-waffle {\n        inset-area: bottom span-right;\n        position-anchor: --anchor-waffle;\n      }\n\n      ntp-rewards {\n        inset-area: bottom span-left;\n        position-anchor: --anchor-rewards;\n      }\n\n      ntp-settings {\n        inset-area: bottom span-left;\n        position-anchor: --anchor-settings;\n      }\n    }\n\n    #inner {\n      display: grid;\n      grid-template-rows: 1fr auto 72px 46px 32px 32px auto 1fr;\n      justify-items: center;\n      position: absolute;\n      top: 0;\n      width: 100%;\n      height: 100vh;\n    }\n\n    #logo {\n      align-self: end;\n      fill: var(--logo-color);\n      display: flex;\n      align-items: center;\n      gap: 14px;\n    }\n\n    #fakebox {\n      grid-row: 4;\n      display: flex;\n      align-items: center;\n      width: 760px;\n      box-sizing: border-box;\n      background-color: var(--neutral-layer-floating);\n      border-radius: 22px;\n      height: 46px;\n      gap: 7px;\n      color: var(--neutral-foreground-rest);\n      box-shadow: rgba(0, 0, 0, 0.11) 0px 0px 2.9px 0px,\n        rgba(0, 0, 0, 0.13) 0px 1.6px 3.6px 0px;\n      border: 1px solid transparent;\n      user-select: none;\n      cursor: text;\n\n      #searchbutton {\n        margin-inline-start: 11px;\n        fill: var(--neutral-foreground-rest);\n      }\n\n      #placeholder {\n        flex: 1;\n        color: inherit;\n        font-family: var(--font-family);\n        font-size: 16px;\n        font-weight: 400;\n        line-height: 24px;\n        margin: 0;\n        text-overflow: ellipsis;\n        white-space: nowrap;\n        overflow: hidden;\n      }\n\n      #cursor {\n        visibility: hidden;\n      }\n\n      &:hover {\n        border-color: var(--accent-foreground-rest);\n      }\n\n      &:focus-within {\n        >#cursor {\n          animation: blink 1.3s step-end infinite;\n          visibility: visible;\n          background-color: var(--neutral-foreground-rest);\n          width: 1px;\n          height: 1em;\n        }\n\n        >#placeholder {\n          display: none;\n        }\n      }\n    }\n\n    ntp-quicklinks {\n      grid-row: 7;\n      width: 844px;\n      min-height: 60px;\n    }\n\n    body[data-layout='inspirational'] {\n      ntp-shell {\n        --inspirational-neutral-foreground-rest: #f7f7f7;\n        background: url('https://img-prod-cms-rt-microsoft-com.akamaized.net/cms/api/am/imageFileData/RE4wtd3?ver=a862');\n        background-repeat: no-repeat;\n        background-size: cover;\n        background-position: center;\n\n        @media (prefers-contrast: more) {\n          --inspirational-neutral-foreground-rest: #262626;\n          background-blend-mode: luminosity;\n        }\n      }\n\n      #background-overlay { display: block; }\n\n      #inner {\n        grid-template-rows: minmax(78px, 15%) 46px 32px 1fr auto 12%;\n      }\n\n      #logo {\n        display: none;\n      }\n\n      #fakebox {\n        grid-row: 2;\n      }\n\n      ntp-quicklinks {\n        grid-row: 5;\n      }\n    }\n\n    .header-popup:popover-open {\n      margin: 0;\n      max-width: 100vw;\n      max-height: calc(100vh - var(--header-height));\n      overflow: auto;\n      box-shadow: var(--shadow4);\n      border: 1px solid transparent;\n      color: var(--neutral-foreground-rest);\n      background-color: var(--fill-popup-color);\n      border-radius: var(--spacingVerticalXS);\n      display: flex;\n    }\n\n    @keyframes blink {\n      0% {\n        opacity: 1;\n      }\n\n      61.55% {\n        opacity: 0;\n      }\n    }\n\n    @media (max-width: 1267px) {\n      #fakebox {\n        width: 528px;\n      }\n\n      ntp-quicklinks {\n        width: 674px;\n      }\n    }\n\n    @media (max-width: 1097px) {\n      ntp-quicklinks {\n        width: 419px;\n        min-height: 130px;\n      }\n    }\n\n    @media (max-width: 955px) {\n      #fakebox {\n        width: 400px;\n      }\n    }\n\n    @media (max-width: 643px) {\n      #fakebox {\n        width: 343px;\n      }\n\n      ntp-quicklinks {\n        width: 249px;\n      }\n\n      #header {\n        padding: 0;\n      }\n\n      #logo-text {\n        width: 100px;\n      }\n\n      #logo-icon {\n        height: 32px;\n      }\n    }\n\n    @media (max-width: 343px) {\n      ntp-shell {\n        min-width: auto;\n      }\n\n      ntp-quicklinks {\n        width: 100%;\n      }\n\n      #fakebox {\n        width: 90%;\n        height: 32px;\n        gap: 2px;\n\n        #placeholder {\n          font-size: 12px;\n          line-height: 16px;\n        }\n\n        svg {\n          width: 16px;\n          height: 16px;\n        }\n      }\n\n      #logo-icon {\n        width: 48px;\n        height: 48px;\n      }\n\n      #logo-text {\n        display: none;\n      }\n    }\n\n    @media (max-height: 475px) {\n      #inner {\n        grid-template-rows: auto 10px 16px 32px 16px 10px;\n      }\n\n      #logo {\n        margin-top: 10px;\n      }\n\n      #logo-icon {\n        width: 32px;\n        height: 32px;\n      }\n    }</style></head><body data-layout=\"inspirational\"><ntp-shell elementtiming=\"wallpaper\"><div id=\"header\"><div id=\"header-left\"><button id=\"waffle\" class=\"header-button\" popovertarget=\"popover-waffle\" popovertargetaction=\"toggle\" type=\"button\" aria-label=\"Apps\" title=\"Apps\"><svg aria-hidden=\"true\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M12 17a2 2 0 110 4 2 2 0 010-4zm7 0a2 2 0 110 4 2 2 0 010-4zM5 17a2 2 0 110 4 2 2 0 010-4zm7-7a2 2 0 110 4 2 2 0 010-4zm7 0a2 2 0 110 4 2 2 0 010-4zM5 10a2 2 0 110 4 2 2 0 010-4zm7-7a2 2 0 110 4 2 2 0 010-4zm7 0a2 2 0 110 4 2 2 0 010-4zM5 3a2 2 0 110 4 2 2 0 010-4z\"></path></svg></button><ntp-waffle id=\"popover-waffle\" class=\"header-popup\" popover popover-endpoint=\"./waffle-partial.html\"></ntp-waffle></div><div id=\"header-right\"><button id=\"rewards\" class=\"header-button\" popovertarget=\"popover-rewards\" popovertargetaction=\"toggle\" type=\"button\" aria-label=\"Inspirierend\" title=\"Inspirierend\"><svg aria-hidden=\"true\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M20.25 2c.97 0 1.75.78 1.75 1.75v3.04c0 1.03-.57 1.97-1.48 2.44l-6.28 3.28a5 5 0 11-4.48 0L3.48 9.23A2.75 2.75 0 012 6.79V3.75C2 2.78 2.78 2 3.75 2h16.5zM12 13.48a3.5 3.5 0 100 7 3.5 3.5 0 000-7zm3.5-9.98h-7v6.66l3.38 1.77c.08.04.16.04.24 0l3.38-1.77V3.5zM7 3.5H3.75a.25.25 0 00-.25.25v3.04c0 .47.26.9.67 1.11L7 9.38V3.5zm13.25 0H17v5.88l2.83-1.48c.41-.22.67-.64.67-1.1V3.74a.25.25 0 00-.25-.25z\"></path></svg></button> <button id=\"settings\" class=\"header-button\" popovertarget=\"popover-settings\" popovertargetaction=\"toggle\" type=\"button\" aria-label=\"Einstellungen\" title=\"Einstellungen\"><svg aria-hidden=\"true\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M12.01 2.25c.74 0 1.47.1 2.18.25.32.07.55.33.59.65l.17 1.53a1.38 1.38 0 001.92 1.11l1.4-.61c.3-.13.64-.06.85.17a9.8 9.8 0 012.2 3.8c.1.3 0 .63-.26.82l-1.24.92a1.38 1.38 0 000 2.22l1.24.92c.26.19.36.52.27.82a9.8 9.8 0 01-2.2 3.8.75.75 0 01-.85.17l-1.4-.62a1.38 1.38 0 00-1.93 1.12l-.17 1.52a.75.75 0 01-.58.65 9.52 9.52 0 01-4.4 0 .75.75 0 01-.57-.65l-.17-1.52a1.38 1.38 0 00-1.93-1.11l-1.4.62a.75.75 0 01-.85-.18 9.8 9.8 0 01-2.2-3.8c-.1-.3 0-.63.27-.82l1.24-.92a1.38 1.38 0 000-2.22l-1.24-.92a.75.75 0 01-.28-.82 9.8 9.8 0 012.2-3.8c.23-.23.57-.3.86-.17l1.4.62c.4.17.86.15 1.25-.08.38-.22.63-.6.68-1.04l.17-1.53a.75.75 0 01.58-.65c.72-.16 1.45-.24 2.2-.25zm0 1.5c-.45 0-.9.04-1.35.12l-.11.97a2.89 2.89 0 01-4.02 2.33l-.9-.4A8.3 8.3 0 004.28 9.1l.8.59a2.88 2.88 0 010 4.64l-.8.59a8.3 8.3 0 001.35 2.32l.9-.4a2.88 2.88 0 014.02 2.32l.1.99c.9.15 1.8.15 2.7 0l.1-.99a2.88 2.88 0 014.02-2.32l.9.4a8.3 8.3 0 001.36-2.32l-.8-.59a2.88 2.88 0 010-4.64l.8-.59a8.3 8.3 0 00-1.35-2.32l-.9.4a2.88 2.88 0 01-4.02-2.32l-.11-.98c-.45-.08-.9-.11-1.34-.12zM12 8.25a3.75 3.75 0 110 7.5 3.75 3.75 0 010-7.5zm0 1.5a2.25 2.25 0 100 4.5 2.25 2.25 0 000-4.5z\"></path></svg></button><ntp-rewards id=\"popover-rewards\" class=\"header-popup\" popover popover-endpoint=\"./rewards-partial.html\"></ntp-rewards><ntp-settings id=\"popover-settings\" class=\"header-popup\" popover popover-endpoint=\"./settings-partial.html\"></ntp-settings></div></div><div id=\"inner\"><div id=\"logo\"><svg aria-hidden=\"true\" id=\"logo-icon\" width=\"48\" height=\"48\" viewBox=\"0 0 48 48\"><path fill=\"#00A4EF\" d=\"M22.7 25.2H0v22.7h22.7V25.2Z\"/><path fill=\"#FFB900\" d=\"M47.79 25.2h-22.7v22.7h22.7V25.2Z\"/><path fill=\"#7FBA00\" d=\"M47.79.1h-22.7v22.7h22.7V.1Z\"/><path fill=\"#F25022\" d=\"M22.7.1H0v22.7h22.7V.1Z\"/></svg> <svg aria-hidden=\"true\" id=\"logo-text\" width=\"163\" height=\"48\" viewBox=\"0 0 163 48\"><path d=\"M31.19 9.66v28.68H26.2v-22.5h-.1l-8.86 22.5h-3.29L4.9 15.84h-.1v22.5H.22V9.66H7.4l8.26 21.2h.1l8.67-21.2h6.77Zm4.08 2.2c0-.8.3-1.5.9-2 .6-.5 1.29-.8 2.08-.8.9 0 1.6.3 2.1.9.5.5.9 1.2.9 2 0 .79-.3 1.49-.9 1.98-.6.5-1.3.8-2.1.8-.9 0-1.49-.3-2.09-.8-.5-.7-.9-1.39-.9-2.09Zm5.37 5.87v20.6h-4.87v-20.6h4.87Zm14.74 17.12a9.16 9.16 0 0 0 4.78-1.79v4.48c-.8.5-1.7.8-2.7 1-.99.2-2.08.3-3.28.3-3.08 0-5.47-.9-7.36-2.9a9.98 9.98 0 0 1-2.9-7.26c0-3.29 1-6.07 2.9-8.16 1.89-2.1 4.68-3.19 8.26-3.19.9 0 1.8.1 2.69.3.9.3 1.69.5 2.19.8v4.67c-.7-.5-1.5-1-2.3-1.29-.79-.3-1.58-.5-2.38-.5-1.9 0-3.49.6-4.68 1.9-1.2 1.29-1.8 2.88-1.8 5.07 0 2.1.5 3.68 1.7 4.88a7.45 7.45 0 0 0 4.88 1.7ZM73.9 17.43c.4 0 .7 0 1.1.1.29.1.59.1.79.2v4.88c-.3-.2-.6-.3-1.1-.5-.5-.2-1.1-.3-1.79-.3-1.2 0-2.19.5-2.99 1.5-.8.99-1.29 2.48-1.29 4.67v10.36h-4.88V17.73h4.88V21h.1c.5-1.1 1.1-1.99 1.99-2.68.8-.6 1.9-.9 3.19-.9Zm2.09 10.95c0-3.38.9-6.07 2.88-8.06 1.9-2 4.58-2.99 8.07-2.99 3.18 0 5.67.9 7.46 2.89 1.8 1.89 2.7 4.48 2.7 7.76 0 3.29-.9 5.98-2.9 7.97-1.89 1.99-4.47 2.98-7.86 2.98-3.19 0-5.67-.9-7.57-2.78-1.89-2-2.78-4.58-2.78-7.77Zm5.07-.2c0 2.1.5 3.78 1.5 4.88a5.4 5.4 0 0 0 4.18 1.7c1.8 0 3.09-.6 4.08-1.7.9-1.1 1.4-2.79 1.4-5.08 0-2.19-.5-3.88-1.5-4.98a4.97 4.97 0 0 0-3.98-1.69c-1.8 0-3.09.6-4.08 1.8-1.2 1.19-1.6 2.88-1.6 5.07Zm23.2-4.98c0 .7.2 1.3.7 1.7.5.4 1.4.9 2.89 1.49 1.89.8 3.28 1.7 4.08 2.59.8 1 1.2 2.09 1.2 3.48 0 1.9-.7 3.49-2.3 4.68-1.5 1.2-3.48 1.8-6.07 1.8a15.8 15.8 0 0 1-5.58-1.1v-4.88c.9.6 1.9 1.1 2.9 1.5.99.3 1.88.5 2.78.5 1.1 0 1.89-.1 2.39-.5.5-.3.8-.8.8-1.5s-.3-1.3-.8-1.7c-.5-.49-1.6-.99-3.09-1.59a8.89 8.89 0 0 1-3.78-2.48 5.7 5.7 0 0 1-1.1-3.59c0-1.89.7-3.38 2.2-4.58a8.8 8.8 0 0 1 5.67-1.79c.7 0 1.5.1 2.39.3.9.1 1.69.4 2.29.6v4.58c-.7-.4-1.4-.8-2.3-1.1-.89-.3-1.69-.5-2.48-.5-.9 0-1.7.2-2.1.5-.39.5-.69.9-.69 1.6Zm10.85 5.18c0-3.38.9-6.07 2.89-8.06 2-2 4.58-2.99 8.06-2.99 3.19 0 5.68.9 7.47 2.89 1.8 1.89 2.69 4.48 2.69 7.76 0 3.29-.9 5.98-2.89 7.97-1.89 1.99-4.48 2.98-7.86 2.98-3.19 0-5.68-.9-7.57-2.78-1.8-2-2.79-4.58-2.79-7.77Zm5.08-.2c0 2.1.5 3.78 1.5 4.88a5.4 5.4 0 0 0 4.17 1.7c1.8 0 3.1-.6 4.09-1.7.9-1.1 1.4-2.79 1.4-5.08 0-2.19-.5-3.88-1.5-4.98a4.96 4.96 0 0 0-3.98-1.69c-1.8 0-3.1.6-4.09 1.8-1.1 1.19-1.59 2.88-1.59 5.07Zm32.16-6.47h-7.27v16.63h-4.88V21.7h-3.48v-3.98h3.48v-2.89c0-2.19.7-3.88 2.1-5.28a7.28 7.28 0 0 1 5.37-2.09c.6 0 1.1 0 1.6.1.49.1.89.1 1.19.3v4.18c-.1-.1-.5-.2-.9-.3-.4-.1-.9-.2-1.4-.2-.99 0-1.79.3-2.28.9-.5.7-.8 1.6-.8 2.79v2.49h7.27v-4.68l4.88-1.5v6.08h4.87v3.98h-4.87v9.66c0 1.3.2 2.19.7 2.69.49.5 1.19.8 2.18.8.3 0 .6-.1 1-.2s.7-.3 1.1-.5v3.98c-.3.2-.8.3-1.5.5-.7.1-1.4.2-2.1.2-2.08 0-3.58-.5-4.57-1.7-1-1.1-1.5-2.69-1.5-4.88V21.71h-.2Z\"/></svg></div><div id=\"fakebox\" role=\"searchbox\" tabindex=\"0\" aria-label=\"Webadresse suchen oder eingeben\"><svg aria-hidden=\"true\" id=\"searchbutton\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M10 2.75a7.25 7.25 0 015.63 11.82l4.9 4.9a.75.75 0 01-.98 1.13l-.08-.07-4.9-4.9A7.25 7.25 0 1110 2.75zm0 1.5a5.75 5.75 0 100 11.5 5.75 5.75 0 000-11.5z\"></path></svg> <i id=\"cursor\" aria-hidden=\"true\" aria-disabled=\"true\"></i><div id=\"placeholder\" aria-hidden=\"true\" aria-disabled=\"true\">Webadresse suchen oder eingeben</div></div><ntp-quicklinks></ntp-quicklinks></div><div id=\"background-overlay\"></div></ntp-shell><script type=\"module\" src=\"./index.js\"></script></body></html>"
+  }
+]
